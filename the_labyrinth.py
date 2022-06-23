@@ -65,7 +65,7 @@ def commentary(dialogue):
     # delay execution of next code by (x) seconds
     time.sleep(1.5)
 
-# valid input function
+# valid input function - string
 
 
 def valid_input(prompt, options):
@@ -75,6 +75,23 @@ def valid_input(prompt, options):
             return option
         print(f"Sorry, the option {option} is invalid. "
                    "Please try again.")
+
+
+# valid input function - numeric
+
+
+def valid_numeric_input(prompt, minimum, maximum):
+    while True:
+        option = input(prompt).lower()
+        if option.isnumeric(): # return True if numeric string
+            option = int(option)
+            if minimum <= option <= maximum:
+                return option
+            else:
+                print(f"Select number which is => {minimum} "
+                       f"and <= {maximum}")
+        else: 
+            print("Choice must be numeric. Please try again.")
 
 
 # play again function
@@ -100,9 +117,9 @@ def choose_character(inventory):
                f"3. {player_list[2]}\n"
                f"4. {player_list[3]}\n"
                f"5. {player_list[4]}\n")
-    player_number_string = valid_input("Pick a number between 1 and 5\n",["1","2","3","4","5"])
-    # turn string to integer
-    player_number = int(player_number_string)
+    
+    player_number = valid_numeric_input("Pick a number between 1 and 5\n",1,5)
+    # player_number = valid_input("Pick a number between 1 and 5\n",["1","2","3","4","5"])
     time.sleep(1)
     commentary(
         f"\nYou have selected to be a {player_list[player_number-1]}\n\n")
