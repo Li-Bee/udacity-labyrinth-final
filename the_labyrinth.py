@@ -71,10 +71,10 @@ def commentary(dialogue):
 def valid_input(prompt, options):
     while True:
         option = input(prompt).lower()
-        for option in options:
+        if option in options:
             return option
         print(f"Sorry, the option {option} is invalid. "
-                   "Please try again.")
+              "Please try again.")
 
 
 # valid input function - numeric
@@ -83,14 +83,14 @@ def valid_input(prompt, options):
 def valid_numeric_input(prompt, minimum, maximum):
     while True:
         option = input(prompt).lower()
-        if option.isnumeric(): # return True if numeric string
+        if option.isnumeric():  # return True if numeric string
             option = int(option)
             if minimum <= option <= maximum:
                 return option
             else:
                 print(f"Select number which is => {minimum} "
-                       f"and <= {maximum}")
-        else: 
+                      f"and <= {maximum}")
+        else:
             print("Choice must be numeric. Please try again.")
 
 
@@ -98,7 +98,8 @@ def valid_numeric_input(prompt, minimum, maximum):
 
 
 def play_again():
-    play_again = valid_input("Would you like to play again? (y/n)\n", ["y", "n"])
+    play_again = valid_input(
+        "Would you like to play again? (y/n)\n", ["y", "n"])
     if play_again == "y":
         commentary("\nRestarting the game ...\n")
         play_game()
@@ -117,9 +118,9 @@ def choose_character(inventory):
                f"3. {player_list[2]}\n"
                f"4. {player_list[3]}\n"
                f"5. {player_list[4]}\n")
-    
-    player_number = valid_numeric_input("Pick a number between 1 and 5\n",1,5)
-    # player_number = valid_input("Pick a number between 1 and 5\n",["1","2","3","4","5"])
+
+    player_number = valid_numeric_input(
+        "Pick a number between 1 and 5\n", 1, 5)
     commentary("")
     commentary(
         f"\nYou have selected to be a {player_list[player_number-1]}\n\n")
@@ -358,8 +359,8 @@ def maze_fight(inventory):
 def fight_enemy(inventory):
     commentary("Will you fight or flee?\n")
     fight = valid_input("Enter 1 or 2: \n\n"
-                  "1. Fight!\n"
-                  "2. Flee for your life!\n\n", ["1", "2"])
+                        "1. Fight!\n"
+                        "2. Flee for your life!\n\n", ["1", "2"])
 
     if fight == "1":
         commentary(f"\nThe {chosen_enemy} sneers at you:")
