@@ -98,7 +98,7 @@ def valid_numeric_input(prompt, minimum, maximum):
 
 
 def play_again():
-    play_again = input("Would you like to play again? (y/n)\n").lower()
+    play_again = valid_input("Would you like to play again? (y/n)\n", ["y", "n"])
     if play_again == "y":
         commentary("\nRestarting the game ...\n")
         play_game()
@@ -109,7 +109,7 @@ def play_again():
 
 
 def choose_character(inventory):
-    time.sleep(1)
+    commentary("")
     commentary("\nWelcome to The Labyrinth\n")
     commentary(f"Choose your character: \n")
     commentary(f"1. {player_list[0]}\n"
@@ -120,7 +120,7 @@ def choose_character(inventory):
     
     player_number = valid_numeric_input("Pick a number between 1 and 5\n",1,5)
     # player_number = valid_input("Pick a number between 1 and 5\n",["1","2","3","4","5"])
-    time.sleep(1)
+    commentary("")
     commentary(
         f"\nYou have selected to be a {player_list[player_number-1]}\n\n")
 
@@ -391,7 +391,6 @@ def fight_sequence(inventory):
     # random damage between 10 and 60 inclusive - necklace not in inventory
     if "necklace" in inventory:
         # random damage between 10 and 60 inclusive
-        global enemy_hit
         enemy_hit = random.randint(20, 60)
         enemy_hit = round(enemy_hit / 5)  # necklace increases your defence
         commentary("Your necklace glows blue and you notice a magical "
