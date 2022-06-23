@@ -65,6 +65,18 @@ def commentary(dialogue):
     # delay execution of next code by (x) seconds
     time.sleep(1.5)
 
+# valid input function
+
+
+def valid_input(prompt, options):
+    while True:
+        option = input(prompt).lower()
+        for option in options:
+            return option
+        print(f"Sorry, the option {option} is invalid. "
+                   "Please try again.")
+
+
 # play again function
 
 
@@ -88,8 +100,9 @@ def choose_character(inventory):
                f"3. {player_list[2]}\n"
                f"4. {player_list[3]}\n"
                f"5. {player_list[4]}\n")
+    player_number_string = valid_input("Pick a number between 1 and 5\n",["1","2","3","4","5"])
     # turn string to integer
-    player_number = int(input("Pick a number between 1 and 5\n"))
+    player_number = int(player_number_string)
     time.sleep(1)
     commentary(
         f"\nYou have selected to be a {player_list[player_number-1]}\n\n")
@@ -149,7 +162,7 @@ def strange_man(inventory):
     commentary("What do you say to the purple-eyed man?\n")
     commentary("(1) Show me where the maze is.\n"
                "(2) I will help you.\n")
-    help_man = input("Select 1 or 2\n")
+    help_man = valid_input("Select 1 or 2\n", ["1", "2"])
 
     if help_man == "1":
         commentary("\nYou ask for him to show you the maze")
@@ -267,7 +280,7 @@ def maze_lions(inventory):
         commentary("Choose a door.\n")
         commentary("(1) Left door.\n"
                    "(2) Right door.\n")
-        door = input("Pick 1 or 2\n")
+        door = valid_input("Pick 1 or 2\n", ["1", "2"])
 
         # brackets on if as statement is so long
         # put on two lines
@@ -327,9 +340,9 @@ def maze_fight(inventory):
 
 def fight_enemy(inventory):
     commentary("Will you fight or flee?\n")
-    fight = input("Enter 1 or 2: \n\n"
+    fight = valid_input("Enter 1 or 2: \n\n"
                   "1. Fight!\n"
-                  "2. Flee for your life!\n\n")
+                  "2. Flee for your life!\n\n", ["1", "2"])
 
     if fight == "1":
         commentary(f"\nThe {chosen_enemy} sneers at you:")
